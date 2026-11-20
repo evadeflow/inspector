@@ -24,3 +24,9 @@ body {
 .react-json-view, .object-key-val, .object-container, .object-content {
   background: transparent !important;
 }
+
+/* @open-rpc/logs-react 1.2.0 hides filtered-out cards with `.call-box.hidden a`, which matches
+   nothing, so its Filter panel has no visible effect. Hide the card itself. */
+.call-box.hidden {
+  display: none !important;
+}
