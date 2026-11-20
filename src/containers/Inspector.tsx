@@ -88,6 +88,10 @@ const defaultTransports: ITransport[] = [
   },
 ];
 
+// Our servers all speak JSON-RPC over WebSocket, so start there rather than at HTTP.
+const defaultTransport: ITransport =
+  defaultTransports.find((t) => t.type === "websocket") || defaultTransports[0];
+
 const errorToJSON = (error: JSONRPCError | any, id?: string | number | null): any => {
   const isError = error instanceof Error;
   if (!isError) {
@@ -178,13 +182,13 @@ const Inspector: React.FC<IProps> = (props) => {
   });
   const [url, setUrl] = useState(props.url || "");
   const [debouncedUrl] = useDebounce(url, 1000);
-  const [selectedTransport, setSelectedTransport] = useState(props.customTransport || defaultTransports[0]);
+  const [selectedTransport, setSelectedTransport] = useState(props.customTransport || defaultTransport);
   const [transportOptions, setTransportOptions] = useState<any>();
   const [debouncedtransportOptions] = useDebounce(transportOptions, 1000);
   const [transport, setTransport, , connected] = useTransport(
     transportList,
     debouncedUrl,
-    props.customTransport || defaultTransports[0],
+    props.customTransport || defaultTransport,
     debouncedtransportOptions,
   );
   const [historyOpen, setHistoryOpen] = useState(false);
