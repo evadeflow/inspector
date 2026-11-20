@@ -14,7 +14,7 @@ interface ITab {
 const emptyJSONRPC = {
   jsonrpc: "2.0",
   method: "",
-  params: [],
+  params: {},
   id: 0,
 };
 

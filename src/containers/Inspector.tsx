@@ -135,7 +135,7 @@ interface IProps {
 const emptyJSONRPC = {
   jsonrpc: "2.0",
   method: "",
-  params: [],
+  params: {},
   id: 0,
 };
 
@@ -167,7 +167,7 @@ const Inspector: React.FC<IProps> = (props) => {
   const [json, setJson] = useState(props.request || {
     jsonrpc: "2.0",
     method: "",
-    params: [],
+    params: {},
     id: 0,
   });
   const [transportList, setTransportList] = useCustomTransportList(() => {
