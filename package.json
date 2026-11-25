@@ -10,6 +10,7 @@
     "access": "public"
   },
   "scripts": {
+    "postinstall": "node scripts/patch-logs-react.js",
     "start": "rescripts start",
     "build": "rescripts build",
     "lint": "tslint --fix -p .",
